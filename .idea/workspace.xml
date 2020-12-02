@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5dd9bb3f-4c5e-4264-865b-0bb4db62fae5" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="ProjectId" id="1l5VxCcVsKYKf9kAogE6Y7vTi7s" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5dd9bb3f-4c5e-4264-865b-0bb4db62fae5" name="Default Changelist" comment="" />
+      <created>1606887185674</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606887185674</updated>
+      <workItem from="1606887187144" duration="2521000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2241" y="95" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606887695071">
+      <screen x="1920" y="-43" width="1920" height="1050" />
+    </state>
+    <state x="2241" y="95" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1050/1920.-43.1920.1050@1920.-43.1920.1050" timestamp="1606887695071" />
+    <state x="2292" y="225" key="run.anything.popup" timestamp="1606889055202">
+      <screen x="1920" y="-43" width="1920" height="1050" />
+    </state>
+    <state x="2292" y="225" key="run.anything.popup/0.0.1920.1050/1920.-43.1920.1050@1920.-43.1920.1050" timestamp="1606889055202" />
+  </component>
+</project>
