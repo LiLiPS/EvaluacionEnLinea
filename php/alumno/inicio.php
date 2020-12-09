@@ -5,12 +5,14 @@
 
     include("../general/conexion.php");
     $base = getConexion();
-    $conexion = $base->query("SELECT * FROM vista_alumno_grupo");
-    $resultado = $conexion->fetch(PDO::FETCH_ASSOC);
-    $idGrupo = $resultado["id_grupo"];
-
-    $conexion = $base->query("SELECT * FROM vista_examen_grupo WHERE id_grupo = $idGrupo");
+    $consulta = "SELECT examen_grupo.*, grupo.id_grupo, grupo.nombre as nombreGrupo, examen.id_examen, examen.nombre as nombreExamen, alumno_grupo.id_usuario from examen_grupo 
+                LEFT JOIN grupo ON examen_grupo.id_grupo = grupo.id_grupo
+                LEFT JOIN alumno_grupo ON grupo.id_grupo = alumno_grupo.id_grupo
+                LEFT JOIN examen ON examen_grupo.id_examen = examen.id_examen WHERE alumno_grupo.id_usuario = " . $_SESSION["id_usuario"];
+    
+    $conexion = $base->query($consulta);
     $examenes = $conexion->fetchAll(PDO::FETCH_OBJ);
+    
 ?>
 
 <!doctype html>
@@ -20,7 +22,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bienvenido/a, <?php echo($_SESSION["nombre_alumno"]); ?></title>
+    <title>Bienvenido/a, <?php echo($_SESSION["nombre"]); ?></title>
 
     <link href="../../css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="../../js/bootstrap.min.js"></script>
@@ -39,16 +41,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Opción 1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Opción 2</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Opción 3</a>
-            </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="../general/logout.php">Cerrar sesión</a>
             </li>
         </ul>
@@ -59,36 +52,28 @@
 <div class="container">
     <br><br>
     <h1 class="text-center">
-        Bienvenido/a, <?php echo($_SESSION["nombre_alumno"]); ?>
+        Bienvenido/a, <?php echo($_SESSION["nombre"]); ?>
     </h1>
 
     <br>
-    <div class="row text-center">
-        <div class="col">
-            <button class="btn btn-link">Regresar</button>
-        </div>
-        <div class="col">
-            <a class="btn btn-primary btn-outline-primary" href="form.php">
-                Crear
-            </a>
-        </div>
-    </div>
 
     <br><br>
     <table class="table table-hover table-bordered table-striped">
         <thead>
         <tr class="text-center">
             <th scope="col">ID</th>
+            <th scope="col">Grupo</th>
             <th scope="col">Examen</th>
-            <th scope="col">+</th>
+            <th scope="col">Operaciones</th>
         </tr>
         </thead>
         <tbody>
-            <?php foreach($examenes as $examen): ?>
+            <?php foreach($examenes as $examen): ?>                
                 <tr>
                     <th scope="row"><?php echo($examen->id_examen); ?></th>
-                    <td><?php echo($examen->nombre); ?></td>
-                    <td><a href="responderExamen.php?idExamen=<?php echo($examen->id_examen);?>&nombre=<?php echo($examen->nombre);?>">Contestar</a></td>
+                    <td><?php echo $examen->nombreGrupo; ?></td>
+                    <td><?php echo($examen->nombreExamen); ?></td>
+                    <td><a href="responderExamen.php?idExamen=<?php echo($examen->id_examen);?>&nombre=<?php echo($examen->nombreExamen);?>">Contestar</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

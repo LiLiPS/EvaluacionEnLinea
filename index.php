@@ -35,7 +35,7 @@
                         </div>
                         <br>
                         <div id="register-link" class="text-right">
-                            <a href="#" class="text-info">Regístrate</a>
+                            <a href="registroUsuario.php" class="text-info">Regístrate</a>
                         </div>
                     </form>
                 </div>

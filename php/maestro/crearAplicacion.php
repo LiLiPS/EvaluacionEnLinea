@@ -97,7 +97,7 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["rol"] != 1)
         <!-- Botones de acción -->
         <div class="form-group text-center">
             <button type="submit" class="btn btn-success">
-                Guardar examen
+                Guardar 
             </button>
             <a href="listaAplicaciones.php" class="btn btn-danger">
                 Cancelar

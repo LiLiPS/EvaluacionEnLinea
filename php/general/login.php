@@ -26,11 +26,11 @@
                 $base = null;
                 header("location:../maestro/inicio.php");
             }else {
-                $alumnos = "SELECT * FROM vista_usuario_alumno WHERE id_usuario = " . $registro["id_usuario"];
+                $alumnos = "SELECT * FROM usuario WHERE id_usuario = " . $registro["id_usuario"];
                 $resultado = $base->prepare($alumnos);
                 $resultado->execute();
                 $registro = $resultado->fetch(PDO::FETCH_ASSOC);
-                $_SESSION["id_alumno"] = $registro["id_alumno"];
+                $_SESSION["id_alumno"] = $registro["id_usuario"];
                 $base = null;
                 header("location:../alumno/inicio.php");
             }
