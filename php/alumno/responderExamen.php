@@ -63,7 +63,7 @@
                     <label for="<?php echo("r_$pregunta->id_pregunta"); ?>">
                         <b><?php echo("$pregunta->pregunta"); ?></b>
                     </label>
-                    <input type="text" name="<?php echo("r_$pregunta->id_pregunta"); ?>" id="<?php echo("r_$pregunta->id_pregunta"); ?>" class="form-control pk_resp" required>
+                    <textarea name="<?php echo("r_$pregunta->id_pregunta"); ?>" id="<?php echo("r_$pregunta->id_pregunta"); ?>" class="form-control pk_resp" rows="3" required></textarea>
                     <img src="../../loading.gif" width="100px" class="carga" id="<?php echo("i_$pregunta->id_pregunta");?>" hidden="">
                     <label id="<?php echo("p_$pregunta->id_pregunta"); ?>" class="p"></label>
                     <br>
