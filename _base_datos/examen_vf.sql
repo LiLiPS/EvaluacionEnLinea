@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2020 a las 07:12:04
+-- Tiempo de generación: 14-12-2020 a las 06:45:27
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -39,7 +39,11 @@ CREATE TABLE `alumno_grupo` (
 --
 
 INSERT INTO `alumno_grupo` (`id_alumno_grupo`, `id_usuario`, `id_grupo`) VALUES
-(1, 2, 1);
+(1, 1, 1),
+(10, 3, 1),
+(11, 5, 3),
+(12, 5, 1),
+(13, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -60,7 +64,8 @@ INSERT INTO `examen` (`id_examen`, `nombre`) VALUES
 (1, 'Examen unidad 1 A'),
 (2, 'Examen unidad 1 B'),
 (3, 'Matemáticas'),
-(4, 'Geografía');
+(4, 'Geografía'),
+(5, 'IA Sistemas expertos');
 
 -- --------------------------------------------------------
 
@@ -73,7 +78,7 @@ CREATE TABLE `examen_alumno` (
   `id_usuario` int(11) NOT NULL,
   `id_examen` int(11) NOT NULL,
   `fecha` datetime DEFAULT NULL,
-  `resultado` tinyint(4) DEFAULT NULL
+  `resultado` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -81,7 +86,7 @@ CREATE TABLE `examen_alumno` (
 --
 
 INSERT INTO `examen_alumno` (`id_examen_alumno`, `id_usuario`, `id_examen`, `fecha`, `resultado`) VALUES
-(1, 2, 4, '2020-12-09 00:00:00', 42);
+(5, 2, 3, '2020-12-12 00:00:00', 78);
 
 -- --------------------------------------------------------
 
@@ -92,16 +97,21 @@ INSERT INTO `examen_alumno` (`id_examen_alumno`, `id_usuario`, `id_examen`, `fec
 CREATE TABLE `examen_grupo` (
   `id_examen_grupo` int(11) NOT NULL,
   `id_examen` int(11) NOT NULL,
-  `id_grupo` int(11) NOT NULL
+  `id_grupo` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `hora_fin` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `examen_grupo`
 --
 
-INSERT INTO `examen_grupo` (`id_examen_grupo`, `id_examen`, `id_grupo`) VALUES
-(1, 3, 1),
-(2, 4, 1);
+INSERT INTO `examen_grupo` (`id_examen_grupo`, `id_examen`, `id_grupo`, `fecha`, `hora_inicio`, `hora_fin`) VALUES
+(1, 3, 1, '2020-12-02', '04:00:00', '05:00:00'),
+(2, 4, 1, '2020-12-13', '15:00:00', '16:00:00'),
+(4, 5, 1, '2020-12-13', '20:00:00', '22:00:00'),
+(5, 4, 5, '2020-12-13', '21:00:00', '22:00:00');
 
 -- --------------------------------------------------------
 
@@ -120,8 +130,12 @@ CREATE TABLE `grupo` (
 --
 
 INSERT INTO `grupo` (`id_grupo`, `id_usuario`, `nombre`) VALUES
-(1, 2, 'Inteligencia Artificial 845'),
-(2, 2, 'Inteligencia Artificial 1030');
+(1, 2, 'Inteligencia Artificial 8:45'),
+(2, 2, 'Inteligencia Artificial 10:30'),
+(3, 4, 'Programación lógica y funcional 7:00'),
+(4, 4, 'Programación lógica y funcional 8:45'),
+(5, 4, 'Sistemas Operativos 10:30'),
+(6, 2, 'Programación Web 12:15');
 
 -- --------------------------------------------------------
 
@@ -145,7 +159,12 @@ INSERT INTO `pregunta` (`id_pregunta`, `id_examen`, `pregunta`, `palabras_clave`
 (2, 3, '¿Sí funcionó?', 'ya,veremos,en,un,momento'),
 (3, 4, 'pregunta 1', 'palabra,clave,muy,importante'),
 (4, 4, 'pregunta 2', 'debe,tener,estas,palabras'),
-(5, 4, 'pregunta 3', 'espero,las,tenga');
+(5, 4, 'pregunta 3', 'espero,las,tenga'),
+(11, 5, '¿Qué es una red semántica? ', 'esquema,representación,conocimiento,conceptos '),
+(12, 5, '¿Qué es un sistema experto?', 'sistema,experto,ciencia,aprendizaje,simulan'),
+(13, 5, '¿Qué es el Módulo de Adquisición del Conocimiento?', 'interface,experto,humano,conocimiento,base'),
+(14, 5, '¿Qué es la Base de hechos?', 'memoria,trabajo,datos,sistema'),
+(15, 5, '¿Qué es el Módulo de justificación?', 'razonamiento,explica,conclusión');
 
 -- --------------------------------------------------------
 
@@ -158,7 +177,7 @@ CREATE TABLE `respuesta_alumno` (
   `id_examen` int(11) NOT NULL,
   `id_pregunta` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `respuesta` varchar(255) NOT NULL
+  `respuesta` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -166,11 +185,11 @@ CREATE TABLE `respuesta_alumno` (
 --
 
 INSERT INTO `respuesta_alumno` (`id_respuesta_alumno`, `id_examen`, `id_pregunta`, `id_usuario`, `respuesta`) VALUES
-(1, 3, 1, 2, 'no lo sé'),
-(2, 3, 2, 2, 'vamo a ver'),
-(3, 4, 3, 2, 'palabra clave muy importante'),
-(4, 4, 4, 2, 'debe hola como estas palabras'),
-(5, 4, 5, 2, 'espero ya no se ');
+(59, 5, 11, 1, 'esquema de representación en red es una forma de representación de conocimiento lingüístico en la que los conceptos y sus interrelaciones se representan mediante un grafo.'),
+(60, 5, 13, 1, ' es la interface entre el sistema y el experto.'),
+(61, 5, 12, 1, 'son sistemas informáticos que simulan el proceso de aprendizaje, de memorización, de razonamiento, de comunicación y de acción en consecuencia de un experto humano en cualquier rama de la ciencia.'),
+(62, 5, 14, 1, 'es la memoria de trabajo o base de datos global'),
+(63, 5, 15, 1, 'es el que  explica el razonamiento utilizado por el sistema para llegar a una determinada conclusión.');
 
 -- --------------------------------------------------------
 
@@ -213,10 +232,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `id_rol`, `nombre`, `apellido_paterno`, `apellido_materno`, `usuario`, `contrasenia`, `no_control`) VALUES
-(1, 1, 'Liliana', 'Parada', 'Sánchez', 'lilips', '1234', 16240612),
-(2, 2, 'Gerardo', 'Carpio', 'Flores', 'gerardo', '1234', 123),
+(1, 2, 'Liliana', 'Parada', 'Sánchez', 'lilips', '1234', 16240612),
+(2, 1, 'Gerardo', 'Carpio', 'Flores', 'gerardo', '1234', 123),
 (3, 2, 'Alan', 'Avila', 'Rocha', 'alan', '1234', 16240484),
-(4, 1, 'Martha', 'Rocha', 'Pérez', 'martha', '1234', 1680);
+(4, 1, 'Martha', 'Rocha', 'Pérez', 'martha', '1234', 1680),
+(5, 2, 'Ana', 'Sánchez', 'Candelas', 'ana', '1234', 16240528);
 
 -- --------------------------------------------------------
 
@@ -317,43 +337,43 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alumno_grupo`
 --
 ALTER TABLE `alumno_grupo`
-  MODIFY `id_alumno_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_alumno_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `examen`
 --
 ALTER TABLE `examen`
-  MODIFY `id_examen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_examen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `examen_alumno`
 --
 ALTER TABLE `examen_alumno`
-  MODIFY `id_examen_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_examen_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `examen_grupo`
 --
 ALTER TABLE `examen_grupo`
-  MODIFY `id_examen_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_examen_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `respuesta_alumno`
 --
 ALTER TABLE `respuesta_alumno`
-  MODIFY `id_respuesta_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_respuesta_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -365,7 +385,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

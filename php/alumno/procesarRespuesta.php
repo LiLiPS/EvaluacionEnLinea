@@ -24,6 +24,7 @@
 
     // calling azure services
     $result = DetectLanguage ($data);
+    // calling google services
     $result2 = analizaSintaxis($respuesta2);
 
     $buscaPregunta = "SELECT * FROM pregunta WHERE id_pregunta=$pk_pregunta";
