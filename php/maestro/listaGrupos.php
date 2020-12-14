@@ -13,6 +13,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>Lista de Grupos</title>
 
     <link href="../../css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -31,12 +33,12 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
-            </li>
+        <ul class="navbar-nav mr-auto">            
             <li class="nav-item active">
                 <a class="nav-link" href="listaGrupos.php">Grupos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listaAplicaciones.php">Aplicaciones</a>
@@ -64,6 +66,7 @@
         <tr class="text-center">
             <th scope="col">Número</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Alumnos</th>
         </tr>
         </thead>
         <tbody>
@@ -71,6 +74,11 @@
                 <tr class="text-center">
                     <td><?php echo $grupo->id_grupo ?></td>
                     <td><?php echo $grupo->nombre ?></td>
+                    <td>
+                        <a class="btn btn-info" href="listaAlumnos.php?idGrupo=<?php echo($grupo->id_grupo);?>">
+                        <i class="fas fa fa-users"></i> 
+                        </a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

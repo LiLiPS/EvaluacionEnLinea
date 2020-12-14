@@ -28,7 +28,7 @@
     for ($i=0; $i < count($preguntas); $i++) { 
         $insertPregunta = "INSERT INTO Pregunta (id_examen, pregunta, palabras_clave) VALUES (:idE, :preg, :pc)";
         $resultado = $base->prepare($insertPregunta);
-        $resultado->execute(array(":idE"=>$lastIDExamen, ":preg"=>$preguntas[$i], ":pc"=>$palabrasClave[$i]));
+        $resultado->execute(array(":idE"=>$lastIDExamen, ":preg"=>$preguntas[$i], ":pc"=>mb_strtolower($palabrasClave[$i], 'UTF-8')));
     }
 
     header("Location:listaExamenes.php");

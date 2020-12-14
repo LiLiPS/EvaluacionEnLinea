@@ -139,3 +139,8 @@ CREATE VIEW vista_alumno_grupo AS
 /*Se agrega columna de palabras clave y se borrará tabla*/
 ALTER TABLE `pregunta` ADD `palabras_clave` VARCHAR(255) NOT NULL AFTER `pregunta`;
 DROP TABLE palabras_clave;
+
+
+/*MODIFICACIONES*/
+ALTER TABLE `examen_grupo` ADD `hora_inicio` TIME NOT NULL AFTER `id_grupo`, ADD `hora_fin` TIME NOT NULL AFTER `hora_inicio`;
+ALTER TABLE `examen_grupo` ADD `fecha` DATE NOT NULL AFTER `id_grupo`;

@@ -16,6 +16,17 @@
     <link href="../../css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/jquery.min.js"></script>
+
+    <style type="text/css">
+        body {
+            background:
+            linear-gradient(to bottom, rgba(255,255,255,0.7) 5%,rgba(255,255,255,0.7) 5%),
+                url("../../fondo.png")
+                no-repeat !important;
+            min-height: 100% !important;
+            background-size: cover !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,10 +42,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
+                <a class="nav-link" href="listaGrupos.php">Grupos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="listaGrupos.php">Grupos</a>
+                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listaAplicaciones.php">Aplicaciones</a>
@@ -50,12 +61,12 @@
 <div class="container">
     <br><br>
     <h1 class="text-center">
-        Bienvenido a la plataforma de aplicación de exámenes
+        Bienvenido/a <?php echo($_SESSION["nombre"]); ?>
     </h1>
 
-    <br>
+    <hr>
     <div class="row text-center">
-        <p class="h3">Descripción</p>
+        <p class="h4">Plataforma para la creación y aplicación de evaluaciones en línea. </p>
     </div>
 </div>
 </body>

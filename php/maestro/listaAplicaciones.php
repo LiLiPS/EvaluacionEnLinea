@@ -35,10 +35,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
+                <a class="nav-link" href="listaGrupos.php">Grupos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="listaGrupos.php">Grupos</a>
+                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="listaAplicaciones.php">Aplicaciones</a>
@@ -76,6 +76,9 @@
             <th scope="col">Número</th>
             <th scope="col">Examen</th>
             <th scope="col">Grupo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora inicio</th>
+            <th scope="col">Hora fin</th>
             <th scope="col">Operaciones</th>
         </tr>
         </thead>
@@ -87,6 +90,9 @@
                     <td><?php echo $contador ?></td>
                     <td><?php echo $aplicacion->examen ?></td>
                     <td><?php echo $aplicacion->grupo ?></td>
+                    <td><?php echo $aplicacion->fecha ?></td>
+                    <td><?php echo $aplicacion->hora_inicio ?></td>
+                    <td><?php echo $aplicacion->hora_fin ?></td>
                     <td>
                         <a class="btn btn-sm btn-warning" href="editarAplicacion.php?id=<?php echo $aplicacion->id_examen_grupo?>">
                             <i class="fas fa-edit"></i>
@@ -100,7 +106,7 @@
             <?php endforeach; ?>
         <?php } else { ?>
             <tr>
-                <td colspan="4" class="text-center">No se encontraron aplicaciones</td>
+                <td colspan="7" class="text-center">No se encontraron aplicaciones</td>
             </tr>
         <?php } ?>
         </tbody>

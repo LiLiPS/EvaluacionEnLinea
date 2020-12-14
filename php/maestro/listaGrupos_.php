@@ -3,7 +3,8 @@
 
     function getGrupos(){
         $base = getConexion();
-        $conexion = $base->query("SELECT * FROM Grupo");
+        $instruccion = "SELECT * FROM grupo WHERE id_usuario = ". $_SESSION["id_usuario"];
+        $conexion = $base->query($instruccion);
         $grupos = $conexion->fetchAll(PDO::FETCH_OBJ);
 
         $base = null;

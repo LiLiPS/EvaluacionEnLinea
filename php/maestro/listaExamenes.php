@@ -34,11 +34,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="listaGrupos.php">Grupos</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listaAplicaciones.php">Aplicaciones</a>

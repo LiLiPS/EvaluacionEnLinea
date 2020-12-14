@@ -36,7 +36,7 @@
             }
         } else{
             $base = null;
-            header("location:../login.php");
+            header("location:../../index.php");
         }
     } catch (Exception $e) {
         die("Error: " . $e -> getMessage());

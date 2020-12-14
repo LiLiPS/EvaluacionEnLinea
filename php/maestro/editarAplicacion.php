@@ -33,12 +33,12 @@ include("listaAplicaciones_.php");
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
-            </li>
+        <ul class="navbar-nav mr-auto">            
             <li class="nav-item">
                 <a class="nav-link" href="listaGrupos.php">Grupos</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="listaExamenes.php">Exámenes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="listaAplicaciones.php">Aplicaciones</a>
@@ -95,6 +95,26 @@ include("listaAplicaciones_.php");
                             </option>
                         <?php } ?>
                     </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" class="form-control" value="<?php echo $aplicacion->fecha?>" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="hora_inicio">Hora inicio:</label>
+                    <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="<?php echo $aplicacion->hora_inicio?>" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="hora_fin">Hora fin:</label>
+                    <input type="time" id="hora_fin" name="hora_fin" class="form-control" value="<?php echo $aplicacion->hora_fin?>" required>
                 </div>
             </div>
         </div>

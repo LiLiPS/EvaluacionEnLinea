@@ -7,12 +7,18 @@
         $sql = "
             SELECT 
                 examen_grupo.id_examen_grupo,
+                examen_grupo.fecha,
+                examen_grupo.hora_inicio,
+                examen_grupo.hora_fin,
                 examen.nombre as examen,
-                grupo.nombre as grupo
+                grupo.nombre as grupo,
+                grupo.id_usuario
             FROM 
                 examen_grupo
                 LEFT JOIN examen ON examen.id_examen = examen_grupo.id_examen
-                LEFT JOIN grupo ON grupo.id_grupo = examen_grupo.id_grupo ";
+                LEFT JOIN grupo ON grupo.id_grupo = examen_grupo.id_grupo 
+                LEFT JOIN usuario ON grupo.id_grupo = usuario.id_usuario
+                WHERE grupo.id_usuario = ". $_SESSION["id_usuario"];
         $conexion = $base->query($sql);
         $aplicaciones = $conexion->fetchAll(PDO::FETCH_OBJ);
 
@@ -39,7 +45,7 @@
     function getGrupos()
     {
         $base = getConexion();
-        $conexion = $base->query("SELECT * FROM Grupo");
+        $conexion = $base->query("SELECT * FROM Grupo WHERE id_usuario = ". $_SESSION["id_usuario"]);
         $grupos = $conexion->fetchAll(PDO::FETCH_OBJ);
 
         $base = null;
