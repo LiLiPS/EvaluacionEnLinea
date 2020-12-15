@@ -3,7 +3,7 @@
     if (!isset($_SESSION["usuario"]) || $_SESSION["rol"] != 1)
         header("location:../../index.php");
 
-    include("listaAplicaciones_.php");
+    include("resultados_.php");
 ?>
 
 <!doctype html>
@@ -13,7 +13,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lista de Aplicaciones</title>
+    <title>Lista de Resultados</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -54,65 +54,41 @@
 <div class="container">
     <br><br>
     <h1 class="text-center">
-        Lista de aplicaciones de exámenes
+        Lista de resultados de exámenes
     </h1>
 
-    <br>
-    <div class="row text-center">
-        <div class="col">
-            <a class="btn btn-primary btn-outline-primary" href="crearAplicacion.php">
-                Crear
-            </a>
-        </div>
-    </div>
+    <hr>
 
-    <br><br>
+    <br>
     <?php
-        $aplicaciones = getAplicaciones();
+        $resultados = getResultados();
     ?>
     <table class="table table-hover table-bordered table-striped">
         <thead>
         <tr class="text-center">
-            <th scope="col">Número</th>
-            <th scope="col">Examen</th>
-            <th scope="col">Grupo</th>
+            <th scope="col">No.</th>
+            <th scope="col">Número de control</th>
+            <th scope="col">Nombre</th>
             <th scope="col">Fecha</th>
-            <th scope="col">Hora inicio</th>
-            <th scope="col">Hora fin</th>
-            <th scope="col">Resultados</th>
-            <th scope="col">Operaciones</th>
+            <th scope="col">Resultado</th>
         </tr>
         </thead>
         <tbody>
-        <?php if (sizeof($aplicaciones) > 0) { ?>
+        <?php if (sizeof($resultados) > 0) { ?>
             <?php $contador = 1; ?>
-            <?php foreach($aplicaciones as $aplicacion): ?>
+            <?php foreach($resultados as $resul): ?>
                 <tr class="text-center">
                     <td><?php echo $contador ?></td>
-                    <td><?php echo $aplicacion->examen ?></td>
-                    <td><?php echo $aplicacion->grupo ?></td>
-                    <td><?php echo $aplicacion->fecha ?></td>
-                    <td><?php echo $aplicacion->hora_inicio ?></td>
-                    <td><?php echo $aplicacion->hora_fin ?></td>
-                    <td>
-                        <a class="btn btn-sm btn-info" href="resultados.php?id=<?php echo $aplicacion->id_examen_grupo?>">
-                            <i class="fas fa-list"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a class="btn btn-sm btn-warning" href="editarAplicacion.php?id=<?php echo $aplicacion->id_examen_grupo?>">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a class="btn btn-sm btn-danger" href="eliminarAplicacion_.php?id=<?php echo $aplicacion->id_examen_grupo?>">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
+                    <td><?php echo $resul->no_control ?></td>
+                    <td><?php echo $resul->nombreAlumno ?></td>
+                    <td><?php echo $resul->fecha_resultado ?></td>
+                    <td><?php echo $resul->resultado ?></td>
                 </tr>
                 <?php $contador++; ?>
             <?php endforeach; ?>
         <?php } else { ?>
             <tr>
-                <td colspan="8" class="text-center">No se encontraron aplicaciones</td>
+                <td colspan="5" class="text-center">No se encontraron resultados</td>
             </tr>
         <?php } ?>
         </tbody>

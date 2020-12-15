@@ -5,6 +5,7 @@
 
     $idExamen = $_GET["idExamen"];
     $nombre = $_GET["nombre"];
+    $aplicacion = $_GET["aplicacion"];
 
     include("../general/conexion.php");
     $base = getConexion();
@@ -45,6 +46,7 @@
         <hr>
         <h2 class="text-center" id="total"></h2>
         <input id="calificacion_final" value="">
+        <input type="hidden" id="aplicacion" value="<?php echo($aplicacion); ?>">
         <form action="guardarPreguntas.php" method="post">
             <input id="id_examen" value="<?php echo($idExamen); ?>">
             <?php 

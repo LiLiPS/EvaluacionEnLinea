@@ -75,7 +75,7 @@
                     <td><?php echo($examen->nombreExamen); ?></td>
                     <td>
                         <?php if($examen->resultado == null) {?>
-                        <a class="btn btn-primary" href="responderExamen.php?idExamen=<?php echo($examen->id_examen);?>&nombre=<?php echo($examen->nombreExamen);?>">Contestar</a>
+                        <a class="btn btn-primary" href="responderExamen.php?idExamen=<?php echo($examen->id_examen);?>&nombre=<?php echo($examen->nombreExamen);?>&aplicacion=<?php echo($examen->id_examen_grupo);?>">Contestar</a>
                         <?php }else { 
                             echo $examen->resultado;
                          } ?>

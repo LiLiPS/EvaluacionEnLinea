@@ -116,13 +116,15 @@ $(document).ready(function(){
     $("#btn_terminar").on('click', function(){
         let idExamen = $("#id_examen").val();
         let resultado_final = $("#calificacion_final").val();
+        let id_aplicacion = $("#aplicacion").val();
         $.ajax({
             url: '/EvaluacionEnLinea/php/alumno/revisarExamen.php', //Donde está mi web service
             type: "POST", // MÉTODO DE ACCESO
             dataType: "HTML", // FORMATO DE LOS DATOS
             data: {
                 "idExamen": idExamen,
-                "resultado_final": resultado_final 
+                "resultado_final": resultado_final,
+                "id_aplicacion" : id_aplicacion 
             },
             success: function (data) {
                 window.location.href = "/EvaluacionEnLinea/php/alumno/inicio.php"

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2020 a las 06:45:27
+-- Tiempo de generación: 15-12-2020 a las 05:53:45
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -43,7 +43,9 @@ INSERT INTO `alumno_grupo` (`id_alumno_grupo`, `id_usuario`, `id_grupo`) VALUES
 (10, 3, 1),
 (11, 5, 3),
 (12, 5, 1),
-(13, 5, 5);
+(13, 5, 5),
+(14, 1, 2),
+(15, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -61,11 +63,11 @@ CREATE TABLE `examen` (
 --
 
 INSERT INTO `examen` (`id_examen`, `nombre`) VALUES
-(1, 'Examen unidad 1 A'),
-(2, 'Examen unidad 1 B'),
 (3, 'Matemáticas'),
 (4, 'Geografía'),
-(5, 'IA Sistemas expertos');
+(5, 'IA Sistemas expertos'),
+(7, 'Prueba'),
+(8, 'Inteligencia artificial');
 
 -- --------------------------------------------------------
 
@@ -75,6 +77,7 @@ INSERT INTO `examen` (`id_examen`, `nombre`) VALUES
 
 CREATE TABLE `examen_alumno` (
   `id_examen_alumno` int(11) NOT NULL,
+  `id_aplicacion` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_examen` int(11) NOT NULL,
   `fecha` datetime DEFAULT NULL,
@@ -85,8 +88,11 @@ CREATE TABLE `examen_alumno` (
 -- Volcado de datos para la tabla `examen_alumno`
 --
 
-INSERT INTO `examen_alumno` (`id_examen_alumno`, `id_usuario`, `id_examen`, `fecha`, `resultado`) VALUES
-(5, 2, 3, '2020-12-12 00:00:00', 78);
+INSERT INTO `examen_alumno` (`id_examen_alumno`, `id_aplicacion`, `id_usuario`, `id_examen`, `fecha`, `resultado`) VALUES
+(14, 7, 1, 7, '2020-12-15 00:00:00', 61.3333),
+(15, 7, 3, 7, '2020-12-15 00:00:00', 45.3333),
+(16, 8, 5, 4, '2020-12-14 19:44:09', 40),
+(20, 13, 1, 8, '2020-12-14 22:51:56', 93.3333);
 
 -- --------------------------------------------------------
 
@@ -109,9 +115,11 @@ CREATE TABLE `examen_grupo` (
 
 INSERT INTO `examen_grupo` (`id_examen_grupo`, `id_examen`, `id_grupo`, `fecha`, `hora_inicio`, `hora_fin`) VALUES
 (1, 3, 1, '2020-12-02', '04:00:00', '05:00:00'),
-(2, 4, 1, '2020-12-13', '15:00:00', '16:00:00'),
-(4, 5, 1, '2020-12-13', '20:00:00', '22:00:00'),
-(5, 4, 5, '2020-12-13', '21:00:00', '22:00:00');
+(4, 5, 1, '2020-12-14', '19:00:00', '22:00:00'),
+(7, 7, 1, '2020-12-14', '18:40:00', '20:40:00'),
+(8, 4, 2, '2020-12-14', '19:42:00', '21:42:00'),
+(12, 4, 1, '2020-12-14', '21:49:00', '23:49:00'),
+(13, 8, 1, '2020-12-14', '22:24:00', '23:24:00');
 
 -- --------------------------------------------------------
 
@@ -164,7 +172,13 @@ INSERT INTO `pregunta` (`id_pregunta`, `id_examen`, `pregunta`, `palabras_clave`
 (12, 5, '¿Qué es un sistema experto?', 'sistema,experto,ciencia,aprendizaje,simulan'),
 (13, 5, '¿Qué es el Módulo de Adquisición del Conocimiento?', 'interface,experto,humano,conocimiento,base'),
 (14, 5, '¿Qué es la Base de hechos?', 'memoria,trabajo,datos,sistema'),
-(15, 5, '¿Qué es el Módulo de justificación?', 'razonamiento,explica,conclusión');
+(15, 5, '¿Qué es el Módulo de justificación?', 'razonamiento,explica,conclusión'),
+(19, 7, '¿Funciona?', 'si,eso,espero,ojala,yes'),
+(20, 7, '¿Sí funcionó?', 'ya,veremos,en,un,momento'),
+(21, 7, 'pregunta 3', 'espero,las,tenga'),
+(22, 8, 'pregunta 1', 'palabra,clave,muy,importante'),
+(23, 8, 'pregunta 2', 'debe,tener,estas,palabras'),
+(24, 8, 'pregunta 3', 'espero,las,tenga');
 
 -- --------------------------------------------------------
 
@@ -185,11 +199,18 @@ CREATE TABLE `respuesta_alumno` (
 --
 
 INSERT INTO `respuesta_alumno` (`id_respuesta_alumno`, `id_examen`, `id_pregunta`, `id_usuario`, `respuesta`) VALUES
-(59, 5, 11, 1, 'esquema de representación en red es una forma de representación de conocimiento lingüístico en la que los conceptos y sus interrelaciones se representan mediante un grafo.'),
-(60, 5, 13, 1, ' es la interface entre el sistema y el experto.'),
-(61, 5, 12, 1, 'son sistemas informáticos que simulan el proceso de aprendizaje, de memorización, de razonamiento, de comunicación y de acción en consecuencia de un experto humano en cualquier rama de la ciencia.'),
-(62, 5, 14, 1, 'es la memoria de trabajo o base de datos global'),
-(63, 5, 15, 1, 'es el que  explica el razonamiento utilizado por el sistema para llegar a una determinada conclusión.');
+(70, 7, 19, 1, 'si ojalá yes no sé'),
+(71, 7, 20, 1, 'ya veremos en un momento'),
+(72, 7, 21, 1, 'espero las hola'),
+(73, 7, 19, 3, 'si no se yes '),
+(74, 7, 20, 3, 'no aun no funciona'),
+(75, 7, 21, 3, 'ya no se '),
+(76, 4, 3, 5, 'no tengo idea'),
+(77, 4, 4, 5, 'si no se bye'),
+(78, 4, 5, 5, 'ya lo que sea'),
+(91, 8, 22, 1, 'es muy importante que tenga las palabras clave'),
+(92, 8, 23, 1, 'debe de tener todas estas palabras'),
+(93, 8, 24, 1, 'espero que tenga chocolate');
 
 -- --------------------------------------------------------
 
@@ -283,7 +304,8 @@ ALTER TABLE `examen`
 ALTER TABLE `examen_alumno`
   ADD PRIMARY KEY (`id_examen_alumno`),
   ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_examen` (`id_examen`);
+  ADD KEY `id_examen` (`id_examen`),
+  ADD KEY `id_aplicacion` (`id_aplicacion`);
 
 --
 -- Indices de la tabla `examen_grupo`
@@ -337,25 +359,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alumno_grupo`
 --
 ALTER TABLE `alumno_grupo`
-  MODIFY `id_alumno_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_alumno_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `examen`
 --
 ALTER TABLE `examen`
-  MODIFY `id_examen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_examen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `examen_alumno`
 --
 ALTER TABLE `examen_alumno`
-  MODIFY `id_examen_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_examen_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `examen_grupo`
 --
 ALTER TABLE `examen_grupo`
-  MODIFY `id_examen_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_examen_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `grupo`
@@ -367,13 +389,13 @@ ALTER TABLE `grupo`
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `respuesta_alumno`
 --
 ALTER TABLE `respuesta_alumno`
-  MODIFY `id_respuesta_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_respuesta_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -403,7 +425,8 @@ ALTER TABLE `alumno_grupo`
 --
 ALTER TABLE `examen_alumno`
   ADD CONSTRAINT `examen_alumno_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
-  ADD CONSTRAINT `examen_alumno_ibfk_2` FOREIGN KEY (`id_examen`) REFERENCES `examen` (`id_examen`);
+  ADD CONSTRAINT `examen_alumno_ibfk_2` FOREIGN KEY (`id_examen`) REFERENCES `examen` (`id_examen`),
+  ADD CONSTRAINT `examen_alumno_ibfk_3` FOREIGN KEY (`id_aplicacion`) REFERENCES `examen_grupo` (`id_examen_grupo`);
 
 --
 -- Filtros para la tabla `examen_grupo`

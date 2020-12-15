@@ -144,3 +144,6 @@ DROP TABLE palabras_clave;
 /*MODIFICACIONES*/
 ALTER TABLE `examen_grupo` ADD `hora_inicio` TIME NOT NULL AFTER `id_grupo`, ADD `hora_fin` TIME NOT NULL AFTER `hora_inicio`;
 ALTER TABLE `examen_grupo` ADD `fecha` DATE NOT NULL AFTER `id_grupo`;
+
+ALTER TABLE `examen_alumno` ADD `id_aplicacion` INT NOT NULL AFTER `id_examen_alumno`;
+ALTER TABLE examen_alumno ADD CONSTRAINT FOREIGN KEY (id_aplicacion) REFERENCES examen_grupo(id_examen_grupo);
